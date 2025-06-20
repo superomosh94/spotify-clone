@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spotify - Log in</title>
+    <link rel="stylesheet" href="./login.css" />
+    <link rel="icon" href="https://www.scdn.co/i/_global/favicon.png" />
+  </head>
+  <body>
+    <div class="login-container">
+      <img
+        src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png"
+        alt="Spotify Logo"
+        class="logo"
+      />
+      <h1>Log in to Spotify</h1>
+
+      <div class="social-buttons">
+        <button class="social-btn">Continue with Google</button>
+        <button class="social-btn">Continue with Facebook</button>
+        <button class="social-btn">Continue with Apple</button>
+        <button class="social-btn">Continue with phone number</button>
+      </div>
+
+      <div class="divider"><span>or</span></div>
+
+      <form class="login-form">
+        <label for="email">Email or username</label>
+        <input
+          type="text"
+          id="email"
+          placeholder="Email or username"
+          required
+        />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Password" required />
+
+        <div class="remember-me">
+          <input type="checkbox" id="remember" />
+          <label for="remember">Remember me</label>
+        </div>
+
+        <button type="submit" class="login-btn">Log In</button>
+      </form>
+
+      <div class="forgot">
+        <a href="#">Forgot your password?</a>
+      </div>
+
+      <div class="signup">
+        <p>
+          Don't have an account?
+          <a href="./sign-up.html">Sign up for Spotify</a>
+        </p>
+      </div>
+
+      <div class="footer">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </body>
+</html>
