@@ -1,4 +1,251 @@
-header {
+ header {
   height: 30px;
   display: flex;
 }
+.tray-1-same,
+.popular-artist,
+.popular-album-singles,
+.popular-radio,
+.featured-charts,
+.editor-pick  {
+  position: relative;
+  width: 180px;
+  background-color: #181818;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  font-family: 'Spotify Circular', sans-serif, Arial, sans-serif;
+  transition: transform 0.3s ease;
+}
+
+.tray-1-same:hover,
+.tray-1-same:hover,
+.popular-artist:hover,
+.popular-album-singles:hover,
+.popular-radio:hover,
+.featured-charts:hover,
+.editor-pick:hover 
+ {
+  transform: scale(1.05);
+}
+
+
+.tray-1-same .image,
+.popular-artist .image,
+.popular-album-singles .image,
+.popular-radio .image,
+.featured-charts .image,
+.editor-pick .image 
+ {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+}
+
+.tray-1-same .image img,
+.popular-artist .image img,
+.popular-album-singles .image img,
+.popular-radio .image img,
+.featured-charts .image img,
+.editor-pick .image  img
+{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+.tray-1-same .play-button 
+
+.popular-artist .play-button,
+.popular-album-singles .play-button,
+.popular-radio .play-button,
+.featured-charts .play-button,
+.editor-pick .play-button 
+{
+  position: absolute;
+  bottom: 60px; 
+  right: 15px;
+  background-color: #1db954;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  z-index: 10;
+}
+
+.tray-1-same:hover .play-button
+
+.popular-artist:hover .play-button,
+.popular-album-singles:hover .play-button,
+.popular-radio:hover .play-button,
+.featured-charts:hover .play-button,
+.editor-pick :hover .play-button
+{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tray-1-same .play-button i
+.popular-artist .play-button i,
+.popular-album-singles .play-button i,
+.popular-radio .play-button i,
+.featured-charts .play-button i,
+.editor-pick .play-button i
+
+{
+  color: white;
+  font-size: 20px;
+  pointer-events: none;
+}
+
+.tray-1-same .name {
+  padding: 12px 14px 16px;
+  color: #fff;
+  background-color: #181818;
+  border-radius: 0 0 8px 8px;
+}
+
+.tray-1-same .name span {
+  font-weight: 700;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tray-1-same .name p {
+  font-weight: 400;
+  font-size: 13px;
+  color: #b3b3b3;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+} 
+
+
+
+
+/* 
+.tray-1-same,
+.popular-artist,
+.popular-album-singles,
+.popular-radio,
+.featured-charts,
+.editor-pick {
+  position: relative;
+  width: 200px;           
+  background-color: #181818; 
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.7);
+  transition: transform 0.3s ease;
+  margin: 15px 10px;
+  display: inline-block;
+  vertical-align: top;
+  font-family: 'Arial', sans-serif;
+}
+
+.tray-1-same:hover,
+.popular-artist:hover,
+.popular-album-singles:hover,
+.popular-radio:hover,
+.featured-charts:hover,
+.editor-pick:hover {
+  transform: scale(1.05);
+}
+
+.tray-1-same .image,
+.popular-artist .image,
+.popular-album-singles .image,
+.popular-radio .image,
+.featured-charts .image,
+.editor-pick .image {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.tray-1-same .image img,
+.popular-artist .image img,
+.popular-album-singles .image img,
+.popular-radio .image img,
+.featured-charts .image img,
+.editor-pick .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.play-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: #1DB954; 
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.play-button:hover {
+  opacity: 1;
+}
+
+.play-button i {
+  color: white;
+  font-size: 18px;
+  pointer-events: none;
+}
+
+.name {
+  padding: 10px 12px;
+  color: white;
+  background-color: #121212;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.name span {
+  display: block;
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.name p {
+  font-weight: 400;
+  font-size: 14px;
+  color: #b3b3b3;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+ */
