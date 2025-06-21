@@ -15,7 +15,7 @@ This project is a **static clone** of the Spotify website built using **HTML** a
 
 ## 🚀 Live Preview
 
-🔗 [Live Demo]()
+🔗 [Live Demo](https://spotify-clone-mu-ten.vercel.app/)
 
 > Replace with a GitHub Pages, Netlify, or Vercel link if hosted.
 
@@ -123,14 +123,4 @@ MIT License © \[Your Name]
 * Icons from [Font Awesome](https://fontawesome.com)
 * UI elements modeled closely to real Spotify site
 
-```
 
----
-
-Would you like:
-- A `preview.png` template (screenshot placement)?
-- Deployment help via GitHub Pages or Netlify?
-- This README exported as a file for download?
-
-Let me know how you'd like to proceed.
-```
