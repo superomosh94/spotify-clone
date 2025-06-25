@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Clone</title>
+     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+                /* Header Styles */
+        header {
+            background-color: #000000;
+            height: 64px;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
+
+        /* Logo */
+        .logo1 {
+            margin-right: 24px;
+        }
+
+        .logo1 svg {
+            fill: #1DB954;
+        }
+
+        /* Navigation */
+        .home {
+            display: flex;
+            align-items: center;
+            margin-right: 24px;
+        }
+
+        .home svg {
+            fill: white;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .home:hover svg {
+            opacity: 1;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            flex-grow: 1;
+            max-width: 364px;
+            position: relative;
+            margin-right: 24px;
+        }
+
+        .search-bar label {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            position: relative;
+        }
+
+        .search-bar i {
+            position: absolute;
+            left: 12px;
+            color: #757575;
+            font-size: 16px;
+        }
+
+        .search-bar input {
+            background-color: #242424;
+            border: none;
+            border-radius: 500px;
+            color: white;
+            height: 48px;
+            padding: 6px 48px;
+            width: 100%;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-bar input::placeholder {
+            color: #b3b3b3;
+        }
+
+        .search-bar input:focus {
+            background-color: #2a2a2a;
+        }
+
+        .search-bar svg {
+            position: absolute;
+            right: 12px;
+            fill: #b3b3b3;
+        }
+
+        /* Right Side */
+        .right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .right button {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 8px;
+            cursor: pointer;
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        .right button:hover {
+            color: #1DB954;
+            transform: scale(1.05);
+        }
+
+        .btnz {
+            display: flex;
+            gap: 12px;
+        }
+
+        .sing-up, .login {
+            border-radius: 500px;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 12px 32px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .sing-up {
+            background: transparent;
+            border: none;
+            color: #a7a7a7;
+        }
+
+        .sing-up:hover {
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .login {
+            background-color: white;
+            border: none;
+            color: black;
+        }
+
+        .login:hover {
+            transform: scale(1.05);
+        }
+
+        .sing-up a, .login a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Install App Button */
+        .Button-sc-1dqy6lx-0 {
+            background: transparent;
+            border: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .Button-sc-1dqy6lx-0:hover {
+            color: #1DB954;
+        }
+
+        .Button-sc-1dqy6lx-0 svg {
+            fill: currentColor;
+        }
+
+        /* Font Awesome Icons (simulated) */
+        .fa-solid {
+            font-style: normal;
+            font-family: Arial;
+        }
+
+        .fa-magnifying-glass::before {
+            content: "🔍";
+        }
+                /* Sidebar Styles */
+        .side12 {
+            background-color: #000;
+            width: 240px;
+            height: 100%;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .side12 > span {
+            color: #b3b3b3;
+            font-weight: 700;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4px 0;
+            cursor: default;
+        }
+
+        .side12 > span i {
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .side12 > span i:hover {
+            transform: scale(1.1);
+        }
+
+        .scrol {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-bottom: 24px;
+        }
+
+        .scrol::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .scrol::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .scrol::-webkit-scrollbar-thumb {
+            background: #535353;
+            border-radius: 4px;
+        }
+
+        .scrol::-webkit-scrollbar-thumb:hover {
+            background: #686868;
+        }
+
+        .one, .one-1 {
+            background-color: #242424;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .one:hover, .one-1:hover {
+            background-color: #2a2a2a;
+        }
+
+        .one h2, .one-1 h2 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .one p, .one-1 p {
+            font-size: 14px;
+            color: #b3b3b3;
+            margin-bottom: 16px;
+        }
+
+        .one button, .one-1 button {
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .one button:hover, .one-1 button:hover {
+            transform: scale(1.05);
+        }
+
+        .one-3 {
+            margin-top: auto;
+        }
+
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+            margin-bottom: 16px;
+        }
+
+        .links a {
+            color: #b3b3b3;
+            font-size: 10px;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .lang button {
+            background: transparent;
+            border: 1px solid #727272;
+            border-radius: 20px;
+            color: white;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .lang button:hover {
+            border-color: white;
+        }
+
+        .lang i {
+            font-size: 14px;
+        }
+
+        /* Font Awesome Icons (simulated) */
+        .fa-solid {
+            font-style: normal;
+            font-family: Arial;
+        }
+
+        .fa-plus::before {
+            content: "+";
+        }
+
+        .fa-globe::before {
+            content: "🌐";
+        }
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Circular', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: white;
+            height: 100vh;
+            display: grid;
+            grid-template-rows: 1fr auto;
+        }
+
+        /* Main Layout */
+        .container {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            height: 100%;
+            overflow: hidden;
+        }
+
+     
+
+        /* Main Content Styles */
+        .main-content {
+            background: linear-gradient(#1e1e1e, #121212);
+            padding: 0 32px;
+            overflow-y: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .nav-button {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: none;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .user-menu {
+            background-color: #000;
+            border-radius: 23px;
+            padding: 2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .user-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background-color: #535353;
+        }
+
+        .user-name {
+            font-size: 14px;
+            font-weight: 700;
+            padding-right: 8px;
+        }
+
+        .greeting {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .see-all {
+            color: #b3b3b3;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        .see-all:hover {
+            text-decoration: underline;
+        }
+
+        .cards-container {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding-bottom: 10px;
+        }
+
+        .cards-container::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .cards-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .cards-container::-webkit-scrollbar-thumb {
+            background: #535353;
+            border-radius: 3px;
+        }
+
+        .cards-container::-webkit-scrollbar-thumb:hover {
+            background: #686868;
+        }
+
+        .card {
+            background-color: #181818;
+            border-radius: 6px;
+            padding: 16px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+            flex: 0 0 180px;
+        }
+
+        .card:hover {
+            background-color: #282828;
+        }
+
+        .card-image {
+            width: 100%;
+            aspect-ratio: 1;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .play-button {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background-color: #1ed760;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s;
+            box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .card:hover .play-button {
+            opacity: 1;
+            transform: translateY(-8px);
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-description {
+            font-size: 14px;
+            color: #a7a7a7;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .scroll-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .scroll-button.left {
+            left: -20px;
+        }
+
+        .scroll-button.right {
+            right: -20px;
+        }
+
+        .section:hover .scroll-button {
+            opacity: 1;
+        }
+
+        /* Player Bar Styles */
+        .player-bar {
+            background-color: #181818;
+            border-top: 1px solid #282828;
+            height: 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            padding: 0 16px;
+        }
+
+        .now-playing {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .now-playing-image {
+            width: 56px;
+            height: 56px;
+        }
+
+        .now-playing-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .song-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .song-name {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .song-artist {
+            font-size: 11px;
+            color: #b3b3b3;
+        }
+
+        .like-button {
+            color: #b3b3b3;
+            margin-left: 16px;
+            cursor: pointer;
+        }
+
+        .player-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .control-buttons {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .control-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .play-pause {
+            background-color: white;
+            color: black;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .time {
+            font-size: 11px;
+            color: #b3b3b3;
+            min-width: 40px;
+        }
+
+        .progress-track {
+            height: 4px;
+            background-color: #535353;
+            border-radius: 2px;
+            flex-grow: 1;
+            cursor: pointer;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 30%;
+            background-color: #b3b3b3;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .progress-track:hover .progress-fill {
+            background-color: #1ed760;
+        }
+
+        .progress-track:hover .progress-fill::after {
+            opacity: 1;
+        }
+
+        .extra-controls {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 16px;
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .volume-icon {
+            color: #b3b3b3;
+            font-size: 16px;
+        }
+
+        .volume-bar {
+            width: 100px;
+            height: 4px;
+            background-color: #535353;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        .volume-fill {
+            height: 100%;
+            width: 70%;
+            background-color: #b3b3b3;
+            border-radius: 2px;
+        }
+
+        /* Font Awesome Icons (simulated) */
+        .fa {
+            font-style: normal;
+            font-family: Arial;
+        }
+
+        .fa-home::before {
+            content: "🏠";
+        }
+
+        .fa-search::before {
+            content: "🔍";
+        }
+
+        .fa-book::before {
+            content: "📚";
+        }
+
+        .fa-plus::before {
+            content: "+";
+        }
+
+        .fa-heart::before {
+            content: "❤️";
+        }
+
+        .fa-step-backward::before {
+            content: "⏮";
+        }
+
+        .fa-step-forward::before {
+            content: "⏭";
+        }
+
+        .fa-play::before {
+            content: "▶";
+        }
+
+        .fa-random::before {
+            content: "🔀";
+        }
+
+        .fa-redo::before {
+            content: "🔁";
+        }
+
+        .fa-volume-up::before {
+            content: "🔊";
+        }
+
+        .fa-expand::before {
+            content: "⛶";
+        }
+
+        .fa-chevron-left::before {
+            content: "◀";
+        }
+
+        .fa-chevron-right::before {
+            content: "▶";
+        }
+        #artist img{
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+      <div class="logo1">
+        <a href="/">
+          <svg
+            role="img"
+            viewBox="0 0 24 24"
+            class="e-9960-logo e-9960-baseline"
+            aria-label="Spotify"
+            aria-hidden="false"
+            height="32"
+            data-encore-id="logoSpotify"
+          >
+            <title>Spotify</title>
+            <path
+              d="M13.427.01C6.805-.253 1.224 4.902.961 11.524.698 18.147 5.853 23.728 12.476 23.99c6.622.263 12.203-4.892 12.466-11.514S20.049.272 13.427.01m5.066 17.579a.717.717 0 0 1-.977.268 14.4 14.4 0 0 0-5.138-1.747 14.4 14.4 0 0 0-5.42.263.717.717 0 0 1-.338-1.392c1.95-.474 3.955-.571 5.958-.29 2.003.282 3.903.928 5.647 1.92a.717.717 0 0 1 .268.978m1.577-3.15a.93.93 0 0 1-1.262.376 17.7 17.7 0 0 0-5.972-1.96 17.7 17.7 0 0 0-6.281.238.93.93 0 0 1-1.11-.71.93.93 0 0 1 .71-1.11 19.5 19.5 0 0 1 6.94-.262 19.5 19.5 0 0 1 6.599 2.165c.452.245.62.81.376 1.263m1.748-3.551a1.147 1.147 0 0 1-1.546.488 21.4 21.4 0 0 0-6.918-2.208 21.4 21.4 0 0 0-7.259.215 1.146 1.146 0 0 1-.456-2.246 23.7 23.7 0 0 1 8.034-.24 23.7 23.7 0 0 1 7.657 2.445c.561.292.78.984.488 1.546m13.612-.036-.832-.247c-1.67-.495-2.14-.681-2.14-1.353 0-.637.708-1.327 2.264-1.327 1.539 0 2.839.752 3.51 1.31.116.096.24.052.24-.098V6.935c0-.097-.027-.15-.098-.203-.83-.62-2.272-1.07-3.723-1.07-2.953 0-4.722 1.68-4.722 3.59 0 2.157 1.371 2.91 3.626 3.546l.973.274c1.689.478 1.998.902 1.998 1.556 0 1.097-.831 1.433-2.07 1.433-1.556 0-3.457-.911-4.35-2.025-.08-.098-.177-.053-.177.062v2.423c0 .097.01.141.08.22.743.814 2.52 1.53 4.59 1.53 2.546 0 4.456-1.485 4.456-3.784 0-1.787-1.052-2.865-3.625-3.635m10.107-1.76c-1.68 0-2.653 1.026-3.219 2.052V9.376c0-.08-.044-.124-.124-.124h-2.22c-.079 0-.123.044-.123.124V20.72c0 .08.044.124.124.124h2.22c.079 0 .123-.044.123-.124v-4.536c.566 1.025 1.521 2.034 3.237 2.034 2.264 0 3.89-1.955 3.89-4.581s-1.644-4.545-3.908-4.545m-.654 6.986c-1.185 0-2.211-1.167-2.618-2.458.407-1.362 1.344-2.405 2.618-2.405 1.211 0 2.051.92 2.051 2.423s-.84 2.44-2.051 2.44m40.633-6.826h-2.264c-.08 0-.115.017-.150.097l-2.282 5.483-2.29-5.483c-.035-.08-.07-.097-.150-.097h-3.661v-.584c0-.955.645-1.397 1.476-1.397.496 0 1.035.256 1.415.486.089.053.150-.008.115-.088l-.796-1.901a.26.26 0 0 0-.124-.133c-.389-.203-1.025-.38-1.644-.38-1.875 0-2.954 1.432-2.954 3.254v.743h-1.503c-.08 0-.124.044-.124.124v1.768c0 .08.044.124.124.124h1.503v6.668c0 .08.044.123.124.123h2.264c.08 0 .124-.044.124-.123v-6.668h1.936l2.812 6.11-1.512 3.325c-.044.098.009.142.097.142h2.414c.08 0 .116-.018.150-.097l4.997-11.355c.035-.08-.009-.141-.097-.141M54.964 9.04c-2.865 0-4.837 2.025-4.837 4.616 0 2.573 1.971 4.616 4.837 4.616 2.856 0 4.846-2.043 4.846-4.616 0-2.591-1.99-4.616-4.846-4.616m.008 7.065c-1.37 0-2.343-1.043-2.343-2.45 0-1.405.973-2.449 2.343-2.449 1.362 0 2.335 1.043 2.335 2.45 0 1.406-.973 2.45-2.335 2.45m33.541-6.334a1.24 1.24 0 0 0-.483-.471 1.4 1.4 0 0 0-.693-.17q-.384 0-.693.17a1.24 1.24 0 0 0-.484.471q-.174.302-.174.681 0 .375.174.677.175.3.484.471t.693.17.693-.17.483-.471.175-.676q0-.38-.175-.682m-.211 1.247a1 1 0 0 1-.394.39 1.15 1.15 0 0 1-.571.14 1.16 1.16 0 0 1-.576-.14 1 1 0 0 1-.391-.39 1.14 1.14 0 0 1-.14-.566q0-.316.14-.562t.391-.388.576-.14q.32 0 .57.14.253.141.395.39t.142.565q0 .312-.142.56m-19.835-5.78c-.85 0-1.468.6-1.468 1.396s.619 1.397 1.468 1.397c.866 0 1.485-.6 1.485-1.397 0-.796-.619-1.397-1.485-1.397m19.329 5.19a.31.31 0 0 0 .134-.262q0-.168-.132-.266-.132-.099-.381-.099h-.588v1.229h.284v-.489h.154l.374.489h.35l-.41-.518a.5.5 0 0 0 .215-.084m-.424-.109h-.26v-.3h.27q.12 0 .184.036a.12.12 0 0 1 .065.116.12.12 0 0 1-.067.111.4.4 0 0 1-.192.037M69.607 9.252h-2.263c-.08 0-.124.044-.124.124v8.56c0 .08.044.123.124.123h2.263c.08 0 .124-.044.124-.123v-8.56c0-.08-.044-.124-.124-.124m-3.333 6.605a2.1 2.1 0 0 1-1.053.257c-.725 0-1.185-.425-1.185-1.362v-3.484h2.211c.08 0 .124-.044.124-.124V9.376c0-.08-.044-.124-.124-.124h-2.21V6.944c0-.097-.063-.15-.15-.08l-3.954 3.113c-.053.044-.07.088-.07.16v1.007c0 .08.044.124.123.124h1.539v3.855c0 2.087 1.203 3.06 2.918 3.06.743 0 1.46-.194 1.884-.442.062-.035.07-.07.07-.133v-1.68c0-.088-.044-.115-.123-.07"
+              transform="translate(-0.95,0)"
+            ></path>
+          </svg>
+        </a>
+      </div>
+      <div class="home">
+        <svg
+          height="30px"
+          data-encore-id="icon"
+          role="img"
+          aria-hidden="true"
+          class="e-9960-icon e-9960-baseline"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M13.5 1.515a3 3 0 0 0-3 0L3 5.845a2 2 0 0 0-1 1.732V21a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-6h4v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V7.577a2 2 0 0 0-1-1.732z"
+          ></path>
+        </svg>
+      </div>
+      <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass" style="color: #757575"></i>
+        <label>
+          <input type="search" placeholder="What do you want to play?" />
+          <svg
+            height="30px"
+            data-encore-id="icon"
+            role="img"
+            aria-hidden="true"
+            class="e-9960-icon e-9960-baseline"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M15 15.5c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2"
+            ></path>
+            <path
+              d="M1.513 9.37A1 1 0 0 1 2.291 9h19.418a1 1 0 0 1 .979 1.208l-2.339 11a1 1 0 0 1-.978.792H4.63a1 1 0 0 1-.978-.792l-2.339-11a1 1 0 0 1 .201-.837zM3.525 11l1.913 9h13.123l1.913-9zM4 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v4h-2V3H6v3H4z"
+            ></path>
+          </svg>
+        </label>
+      </div>
+      <div class="right">
+        <button>Premium</button><button>Support</button
+        ><button>Download</button>
+        <a
+          draggable="false"
+          class="Button-sc-1dqy6lx-0 dzIYeQ encore-text-body-small-bold e-9960-overflow-wrap-anywhere e-9960-button--small e-9960-button--leading"
+          data-encore-id="buttonTertiary"
+          href="/download"
+          ><span aria-hidden="true" class="e-9960-button__icon-wrapper"
+            ><svg
+              height="30px"
+              data-encore-id="icon"
+              role="img"
+              aria-hidden="true"
+              class="e-9960-icon e-9960-baseline"
+              viewBox="0 0 16 16"
+              style="
+                --encore-icon-height: var(
+                  --encore-graphic-size-decorative-smaller
+                );
+                --encore-icon-width: var(
+                  --encore-graphic-size-decorative-smaller
+                );
+              "
+            >
+              <path
+                d="M4.995 8.745a.75.75 0 0 1 1.06 0L7.25 9.939V4a.75.75 0 0 1 1.5 0v5.94l1.195-1.195a.75.75 0 1 1 1.06 1.06L8 12.811l-.528-.528-.005-.005-2.472-2.473a.75.75 0 0 1 0-1.06"
+              ></path>
+              <path
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13"
+              ></path></svg></span
+          ><span
+            class="e-9960-text encore-text-body-small-bold ellipsis-one-line"
+            >Install App</span
+          ></a
+        >
+        <div class="btnz">
+          <button class="sing-up">
+            <a href="./sign-up.html">Sign up</a>
+          </button>
+          <button class="login">
+            <span class="log-in">
+              <a href="./login.html">Log in</a>
+            </span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+
+       <div class="side12">
+        <span
+          >Your Library
+          <i class="fa-solid fa-plus" style="color: #ffffff"></i>
+        </span>
+        <div class="scrol">
+          <div class="one">
+            <h2>Create your first playlist</h2>
+            <p>It's easy, we'll help you</p>
+            <button><span>Create playlist</span></button>
+          </div>
+          <div class="one-1">
+            <h2>Let's find some podcasts to follow</h2>
+            <p>we'll keep you updated on new episodes</p>
+            <button><span>Browse podcasts</span></button>
+          </div>
+        </div>
+        <div class="one-3">
+          <div class="links">
+            <a href="#">Legal</a><a href="#">Safety & Privacy Center</a
+            ><a href="#">Privacy Policy</a><a href="">cookies</a
+            ><a href="">About Ads</a><a href="">Accessibility</a
+            ><a href="">cookies</a>
+          </div>
+          <div class="lang">
+            <button>
+              <i class="fa-solid fa-globe" style="color: #1b1c1d"></i>
+              English
+            </button>
+          </div>
+        </div>
+      </div>  
+       
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <div class="nav-buttons">
+                    <button class="nav-button"><span class="fa fa-step-backward"></span></button>
+                    <button class="nav-button"><span class="fa fa-step-forward"></span></button>
+                </div>
+                <div class="user-menu">
+                    <div class="user-avatar"></div>
+                    <div class="user-name">User</div>
+                </div>
+            </div>
+
+            <h1 class="greeting">Good afternoon</h1>
+
+            <!-- Section 1: Recently Played -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Recently played</h2>
+                    <div class="see-all">Show all</div>
+                </div>
+                <button class="scroll-button left fa fa-chevron-left"></button>
+                <div class="cards-container">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002ca5a7517156021292e5663a6" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Today's Top Hits</div>
+                        <div class="card-description">Taylor Swift is on top of the Hottest 50!</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002583117b5a5f418565c8c9d5e" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">RapCaviar</div>
+                        <div class="card-description">New music from Drake, Kendrick Lamar and Travis Scott.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002a980b152e708b33c6516d848" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">All Out 2010s</div>
+                        <div class="card-description">The biggest songs of the 2010s.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002e4eaddf5e4c5e5a2a7a8e7e1" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Rock Classics</div>
+                        <div class="card-description">Rock legends & epic songs that continue to inspire generations.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002e3f6a8e9a43a0e0e8f6a9e8f" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Chill Hits</div>
+                        <div class="card-description">Kick back to the best new and recent chill hits.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002a980b152e708b33c6516d848" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Mood Booster</div>
+                        <div class="card-description">Get happy with today's dose of feel-good songs!</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002c414e7d2103461c7a5f95b0e" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Peaceful Piano</div>
+                        <div class="card-description">Relax and indulge with beautiful piano pieces</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002e4eaddf5e4c5e5a2a7a8e7e1" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Deep Focus</div>
+                        <div class="card-description">Keep calm and focus with ambient and post-rock music.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002d72ef75e14ca6f60ea2364c2" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Instrumental Study</div>
+                        <div class="card-description">Focus with soft study music in the background.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002a76a2ccb454ff0e1720a50a3" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Jazz Vibes</div>
+                        <div class="card-description">The original chill instrumental beats playlist.</div>
+                    </div>
+                </div>
+                <button class="scroll-button right fa fa-chevron-right"></button>
+            </div>
+
+            <!-- Section 2: Made For You -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Made For You</h2>
+                    <div class="see-all">Show all</div>
+                </div>
+                <button class="scroll-button left fa fa-chevron-left"></button>
+                <div class="cards-container">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002ca5a7517156021292e5663a6" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Daily Mix 1</div>
+                        <div class="card-description">Made for you based on your listening history</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002583117b5a5f418565c8c9d5e" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Discover Weekly</div>
+                        <div class="card-description">Your weekly mixtape of fresh music</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002a980b152e708b33c6516d848" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Release Radar</div>
+                        <div class="card-description">Catch all the latest music from artists you follow</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002c414e7d2103461c7a5f95b0e" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Time Capsule</div>
+                        <div class="card-description">We made you a personalized playlist with your favorites from the past.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002e4eaddf5e4c5e5a2a7a8e7e1" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">On Repeat</div>
+                        <div class="card-description">Your most played tracks right now</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002d72ef75e14ca6f60ea2364c2" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Repeat Rewind</div>
+                        <div class="card-description">Your past favorites we think you'll love again</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002a76a2ccb454ff0e1720a50a3" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Your Top Songs 2023</div>
+                        <div class="card-description">The songs you loved most this year, all wrapped up.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002c414e7d2103461c7a5f95b0e" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Discover Weekly Archive</div>
+                        <div class="card-description">Your past Discover Weekly playlists</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002e4eaddf5e4c5e5a2a7a8e7e1" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">The Ones That Got Away</div>
+                        <div class="card-description">Songs you might have missed from your past playlists</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002d72ef75e14ca6f60ea2364c2" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Tastebreakers</div>
+                        <div class="card-description">A playlist full of fresh picks and deep cuts chosen just for you.</div>
+                    </div>
+                </div>
+                <button class="scroll-button right fa fa-chevron-right"></button>
+            </div>
+
+            <!-- Section 3: Popular Playlists -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Popular playlists</h2>
+                    <div class="see-all">Show all</div>
+                </div>
+                <button class="scroll-button left fa fa-chevron-left"></button>
+                <div class="cards-container">
+                    <div class="card">
+                        <div id="artist" class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002ca5a7517156021292e5663a6" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Today's Top Hits</div>
+                        <div class="card-description">Taylor Swift is on top of the Hottest 50!</div>
+                    </div>
+                    <div class="card">
+                        <div id="artist" class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002583117b5a5f418565c8c9d5e" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">RapCaviar</div>
+                        <div class="card-description">New music from Drake, Kendrick Lamar and Travis Scott.</div>
+                    </div>
+                    <div class="card">
+                        <div id="artist" class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002a980b152e708b33c6516d848" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">All Out 2010s</div>
+                        <div class="card-description">The biggest songs of the 2010s.</div>
+                    </div>
+                    <div id="artist" class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002e4eaddf5e4c5e5a2a7a8e7e1" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Rock Classics</div>
+                        <div class="card-description">Rock legends & epic songs that continue to inspire generations.</div>
+                    </div>
+                    <div id="artist" class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002e3f6a8e9a43a0e0e8f6a9e8f" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Chill Hits</div>
+                        <div class="card-description">Kick back to the best new and recent chill hits.</div>
+                    </div>
+                    <div id="artist" class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002a980b152e708b33c6516d848" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Mood Booster</div>
+                        <div class="card-description">Get happy with today's dose of feel-good songs!</div>
+                    </div>
+                    <div id="artist" class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002c414e7d2103461c7a5f95b0e" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Peaceful Piano</div>
+                        <div class="card-description">Relax and indulge with beautiful piano pieces</div>
+                    </div>
+                    <div id="artist" class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002e4eaddf5e4c5e5a2a7a8e7e1" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Deep Focus</div>
+                        <div class="card-description">Keep calm and focus with ambient and post-rock music.</div>
+                    </div>
+                    <div id="artist" class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002d72ef75e14ca6f60ea2364c2" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Instrumental Study</div>
+                        <div class="card-description">Focus with soft study music in the background.</div>
+                    </div>
+                    <div id="artist" class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002a76a2ccb454ff0e1720a50a3" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Jazz Vibes</div>
+                        <div class="card-description">The original chill instrumental beats playlist.</div>
+                    </div>
+                </div>
+                <button class="scroll-button right fa fa-chevron-right"></button>
+            </div>
+
+            <!-- Section 4: Recommended for Today -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Recommended for today</h2>
+                    <div class="see-all">Show all</div>
+                </div>
+                <button class="scroll-button left fa fa-chevron-left"></button>
+                <div class="cards-container">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002ca5a7517156021292e5663a6" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Daily Lift</div>
+                        <div class="card-description">Your daily dose of feel-good songs!</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002583117b5a5f418565c8c9d5e" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Morning Motivation</div>
+                        <div class="card-description">Start your day right with these uplifting tunes</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002a980b152e708b33c6516d848" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Afternoon Acoustic</div>
+                        <div class="card-description">Chill acoustic songs for your afternoon</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002e4eaddf5e4c5e5a2a7a8e7e1" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Evening Jazz</div>
+                        <div class="card-description">Smooth jazz for your evening relaxation</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002e3f6a8e9a43a0e0e8f6a9e8f" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Nighttime Chill</div>
+                        <div class="card-description">Unwind with these relaxing nighttime tunes</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002a980b152e708b33c6516d848" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Workout Energy</div>
+                        <div class="card-description">High-energy tracks to power your workout</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002c414e7d2103461c7a5f95b0e" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Focus Flow</div>
+                        <div class="card-description">Concentration-enhancing instrumental music</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002e4eaddf5e4c5e5a2a7a8e7e1" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Creative Mind</div>
+                        <div class="card-description">Music to spark your creativity</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002d72ef75e14ca6f60ea2364c2" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Weekend Vibes</div>
+                        <div class="card-description">Celebrate the weekend with these upbeat tracks</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67706f00000002a76a2ccb454ff0e1720a50a3" alt="Playlist">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Rainy Day</div>
+                        <div class="card-description">Cozy up with these perfect rainy day songs</div>
+                    </div>
+                </div>
+                <button class="scroll-button right fa fa-chevron-right"></button>
+            </div>
+
+            <!-- Section 5: New Releases -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">New releases</h2>
+                    <div class="see-all">Show all</div>
+                </div>
+                <button class="scroll-button left fa fa-chevron-left"></button>
+                <div class="cards-container">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" alt="Album">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Midnights</div>
+                        <div class="card-description">Taylor Swift</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67616d00001e0264a60c5e7a1d9c2a3a4b5f5e" alt="Album">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">HEROES & VILLAINS</div>
+                        <div class="card-description">Metro Boomin</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67616d00001e029ad3e9959f48d513886b8933" alt="Album">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">SOS</div>
+                        <div class="card-description">SZA</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67616d00001e02a3b3f48ca81acacd3d9d1a1e" alt="Album">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">The Highlights</div>
+                        <div class="card-description">The Weeknd</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67616d00001e02e1a0e0c1e4a2a4a4a4a4a4a" alt="Album">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Un Verano Sin Ti</div>
+                        <div class="card-description">Bad Bunny</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67616d00001e02b3b3f48ca81acacd3d9d1a1e" alt="Album">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Dawn FM</div>
+                        <div class="card-description">The Weeknd</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67616d00001e02c5c5c5c5c5c5c5c5c5c5c5" alt="Album">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Harry's House</div>
+                        <div class="card-description">Harry Styles</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67616d00001e02d3d3d3d3d3d3d3d3d3d3d3d" alt="Album">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Planet Her</div>
+                        <div class="card-description">Doja Cat</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67616d00001e02e4e4e4e4e4e4e4e4e4e4e4e" alt="Album">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Happier Than Ever</div>
+                        <div class="card-description">Billie Eilish</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67616d00001e02f5f5f5f5f5f5f5f5f5f5f5f" alt="Album">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Justice</div>
+                        <div class="card-description">Justin Bieber</div>
+                    </div>
+                </div>
+                <button class="scroll-button right fa fa-chevron-right"></button>
+            </div>
+
+            <!-- Section 6: Popular Artists -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Popular artists</h2>
+                    <div class="see-all">Show all</div>
+                </div>
+                <button class="scroll-button left fa fa-chevron-left"></button>
+                <div class="cards-container">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab676161000051748e5a5c0bce3c6a2e8a7248a1" alt="Artist" style="border-radius: 50%;">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Taylor Swift</div>
+                        <div class="card-description">Artist</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67616100005174b1b4e1a2a2a2a2a2a2a2a2a2" alt="Artist" style="border-radius: 50%;">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">The Weeknd</div>
+                        <div class="card-description">Artist</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67616100005174c5c5c5c5c5c5c5c5c5c5c5c5" alt="Artist" style="border-radius: 50%;">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Bad Bunny</div>
+                        <div class="card-description">Artist</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67616100005174d3d3d3d3d3d3d3d3d3d3d3d" alt="Artist" style="border-radius: 50%;">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Drake</div>
+                        <div class="card-description">Artist</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67616100005174e1e1e1e1e1e1e1e1e1e1e1e1" alt="Artist" style="border-radius: 50%;">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Ed Sheeran</div>
+                        <div class="card-description">Artist</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67616100005174f5f5f5f5f5f5f5f5f5f5f5f5" alt="Artist" style="border-radius: 50%;">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Ariana Grande</div>
+                        <div class="card-description">Artist</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67616100005174a3a3a3a3a3a3a3a3a3a3a3a3" alt="Artist" style="border-radius: 50%;">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Justin Bieber</div>
+                        <div class="card-description">Artist</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67616100005174b5b5b5b5b5b5b5b5b5b5b5b5" alt="Artist" style="border-radius: 50%;">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Billie Eilish</div>
+                        <div class="card-description">Artist</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67616100005174c8c8c8c8c8c8c8c8c8c8c8c8" alt="Artist" style="border-radius: 50%;">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Dua Lipa</div>
+                        <div class="card-description">Artist</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67616100005174d8d8d8d8d8d8d8d8d8d8d8d8" alt="Artist" style="border-radius: 50%;">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Post Malone</div>
+                        <div class="card-description">Artist</div>
+                    </div>
+                </div>
+                <button class="scroll-button right fa fa-chevron-right"></button>
+            </div>
+
+            <!-- Section 7: Podcasts -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Popular podcasts</h2>
+                    <div class="see-all">Show all</div>
+                </div>
+                <button class="scroll-button left fa fa-chevron-left"></button>
+                <div class="cards-container">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67656300005f1f2a2a2a2a2a2a2a2a2a2a2a2" alt="Podcast">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">The Joe Rogan Experience</div>
+                        <div class="card-description">The official podcast of comedian Joe Rogan</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67656300005f1fb5b5b5b5b5b5b5b5b5b5b5b5" alt="Podcast">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Call Her Daddy</div>
+                        <div class="card-description">The hit sex and relationships podcast</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67656300005f1fc8c8c8c8c8c8c8c8c8c8c8c8" alt="Podcast">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Crime Junkie</div>
+                        <div class="card-description">True crime stories told by two best friends</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67656300005f1fd3d3d3d3d3d3d3d3d3d3d3d" alt="Podcast">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">The Daily</div>
+                        <div class="card-description">The biggest stories of our time, told by the best journalists</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67656300005f1fe1e1e1e1e1e1e1e1e1e1e1e1" alt="Podcast">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Stuff You Should Know</div>
+                        <div class="card-description">Fascinating stories about how things work</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67656300005f1ff5f5f5f5f5f5f5f5f5f5f5f5" alt="Podcast">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">My Favorite Murder</div>
+                        <div class="card-description">True crime comedy podcast hosted by Karen Kilgariff and Georgia Hardstark</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67656300005f1fa3a3a3a3a3a3a3a3a3a3a3a3" alt="Podcast">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">The Michelle Obama Podcast</div>
+                        <div class="card-description">Conversations between Michelle Obama and her loved ones</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67656300005f1fb5b5b5b5b5b5b5b5b5b5b5b5" alt="Podcast">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Armchair Expert</div>
+                        <div class="card-description">Actor Dax Shepard explores the messiness of being human</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67656300005f1fc8c8c8c8c8c8c8c8c8c8c8c8" alt="Podcast">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">Serial</div>
+                        <div class="card-description">Investigative journalism podcast that tells one story over multiple episodes</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://i.scdn.co/image/ab67656300005f1fd8d8d8d8d8d8d8d8d8d8d8d8" alt="Podcast">
+                            <div class="play-button">
+                                <span class="fa fa-play"></span>
+                            </div>
+                        </div>
+                        <div class="card-title">How I Built This</div>
+                        <div class="card-description">Stories behind the world's best known companies</div>
+                    </div>
+                </div>
+                <button class="scroll-button right fa fa-chevron-right"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Player Bar -->
+    <div class="player-bar">
+        <div class="now-playing">
+            <div class="now-playing-image">
+                <img src="https://i.scdn.co/image/ab67616d00004851c08d11dfdcfcf04b739c1c43" alt="Now Playing">
+            </div>
+            <div class="song-info">
+                <div class="song-name">Blinding Lights</div>
+                <div class="song-artist">The Weeknd</div>
+            </div>
+            <div class="like-button fa fa-heart"></div>
+        </div>
+
+        <div class="player-controls">
+            <div class="control-buttons">
+                <button class="control-button fa fa-random"></button>
+                <button class="control-button fa fa-step-backward"></button>
+                <button class="control-button play-pause fa fa-play"></button>
+                <button class="control-button fa fa-step-forward"></button>
+                <button class="control-button fa fa-redo"></button>
+            </div>
+            <div class="progress-bar">
+                <span class="time">1:23</span>
+                <div class="progress-track">
+                    <div class="progress-fill"></div>
+                </div>
+                <span class="time">3:45</span>
+            </div>
+        </div>
+
+        <div class="extra-controls">
+            <div class="volume-control">
+                <span class="volume-icon fa fa-volume-up"></span>
+                <div class="volume-bar">
+                    <div class="volume-fill"></div>
+                </div>
+            </div>
+            <button class="control-button fa fa-expand"></button>
+        </div>
+    </div>
+
+    <script>
+        // Simple player functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const playButtons = document.querySelectorAll('.play-button, .play-pause');
+            const progressFill = document.querySelector('.progress-fill');
+            const volumeFill = document.querySelector('.volume-fill');
+            
+            // Simulate play/pause functionality
+            playButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const playPause = this.querySelector('.fa-play, .fa-pause') || this;
+                    
+                    if (playPause.classList.contains('fa-play')) {
+                        playPause.classList.remove('fa-play');
+                        playPause.classList.add('fa-pause');
+                        simulateProgress();
+                    } else {
+                        playPause.classList.remove('fa-pause');
+                        playPause.classList.add('fa-play');
+                        stopProgress();
+                    }
+                });
+            });
+            
+            // Card click also plays
+            document.querySelectorAll('.card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const playButton = this.querySelector('.play-button');
+                    if (playButton) playButton.click();
+                });
+            });
+            
+            // Simulate progress bar movement
+            let progressInterval;
+            function simulateProgress() {
+                let width = 30;
+                progressInterval = setInterval(() => {
+                    width += 0.5;
+                    if (width > 100) width = 0;
+                    progressFill.style.width = `${width}%`;
+                }, 1000);
+            }
+            
+            function stopProgress() {
+                clearInterval(progressInterval);
+            }
+            
+            // Volume control
+            document.querySelector('.volume-bar').addEventListener('click', function(e) {
+                const rect = this.getBoundingClientRect();
+                const clickPosition = e.clientX - rect.left;
+                const percentage = (clickPosition / rect.width) * 100;
+                volumeFill.style.width = `${Math.min(100, Math.max(0, percentage))}%`;
+            });
+            
+            // Progress bar click
+            document.querySelector('.progress-track').addEventListener('click', function(e) {
+                const rect = this.getBoundingClientRect();
+                const clickPosition = e.clientX - rect.left;
+                const percentage = (clickPosition / rect.width) * 100;
+                progressFill.style.width = `${percentage}%`;
+            });
+
+            // Scroll buttons functionality
+            document.querySelectorAll('.scroll-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const container = this.parentElement.querySelector('.cards-container');
+                    const scrollAmount = this.classList.contains('left') ? -300 : 300;
+                    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
