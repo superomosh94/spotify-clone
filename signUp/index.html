@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        /* Reset and base styles */
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #121212;
+          color: white;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+        }
+
+        a {
+          color: #1ed760;
+          text-decoration: none;
+        }
+
+        .signup-container {
+          background-color: #000;
+          padding: 40px;
+          border-radius: 10px;
+          width: 100%;
+          max-width: 400px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+          text-align: center;
+        }
+
+        h1 {
+          margin-bottom: 20px;
+          font-size: 24px;
+        }
+
+        .input-container {
+          text-align: left;
+          margin-bottom: 15px;
+        }
+
+        .input-container label {
+          display: block;
+          font-size: 14px;
+          margin-bottom: 8px;
+        }
+
+        .input-container input {
+          width: 100%;
+          padding: 12px;
+          border-radius: 5px;
+          border: none;
+          background-color: #222;
+          color: white;
+          box-sizing: border-box;
+        }
+
+        .phone-link {
+          display: block;
+          text-align: center;
+          margin-bottom: 25px;
+          font-size: 14px;
+        }
+
+        .next-button {
+          background-color: #1ed760;
+          color: black;
+          border: none;
+          padding: 14px;
+          font-size: 16px;
+          border-radius: 30px;
+          cursor: pointer;
+          width: 100%;
+          margin-bottom: 20px;
+          font-weight: bold;
+          transition: background 0.3s;
+        }
+
+        .next-button:hover {
+          background-color: #1fdf64;
+        }
+
+        .divider {
+          display: flex;
+          align-items: center;
+          margin: 20px 0;
+        }
+
+        .divider::before,
+        .divider::after {
+          content: "";
+          flex: 1;
+          height: 1px;
+          background-color: #444;
+        }
+
+        .divider span {
+          margin: 0 10px;
+          color: #888;
+          font-size: 14px;
+        }
+
+        .social-buttons {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          margin-bottom: 20px;
+        }
+
+        .social-btn {
+          background-color: #2a2a2a;
+          color: white;
+          border: 1px solid #444;
+          padding: 12px;
+          border-radius: 30px;
+          cursor: pointer;
+          transition: background 0.3s;
+          font-weight: bold;
+        }
+
+        .social-btn:hover {
+          background-color: #333;
+        }
+
+        .login-link {
+          margin-top: 20px;
+          font-size: 14px;
+        }
+
+        .legal {
+          margin-top: 30px;
+          font-size: 12px;
+          color: #888;
+          line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h1>Sign up to start listening</h1>
+        
+        <div class="input-container">
+            <label for="email">Email address</label>
+            <input type="email" id="email" placeholder="name@domain.com">
+        </div>
+        
+        <a href="#" class="phone-link">Use phone number instead.</a>
+        
+        <button type="submit" class="next-button">Next</button>
+        
+        <div class="divider">
+            <span>or</span>
+        </div>
+        
+        <div class="social-buttons">
+            <button type="button" class="social-btn">Sign up with Google</button>
+            <button type="button" class="social-btn">Sign up with Apple</button>
+        </div>
+        
+        <div class="login-link">
+            Already have an account? <a href="#">Log in here</a>
+        </div>
+        
+        <div class="legal">
+            This site is protected by reCAPTCHA and the Google<br>
+            <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply
+        </div>
+    </div>
+</body>
+</html>

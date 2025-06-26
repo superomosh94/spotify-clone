@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Password - Step 1 of 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .step-indicator {
+            font-size: 18px;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .password-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        .requirements {
+            margin-bottom: 30px;
+        }
+        
+        .requirement {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .requirement-circle {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .next-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .next-button:hover {
+            background-color: #0069d9;
+        }
+    </style>
+</head>
+<body>
+    <div class="step-indicator">Step 1 of 3</div>
+    <h1>Create a password</h1>
+    
+    <form>
+        <input type="password" class="password-input" placeholder="Password">
+        
+        <div class="requirements">
+            <p>Your password must contain at least</p>
+            
+            <div class="requirement">
+                <div class="requirement-circle"></div>
+                <span>1 letter</span>
+            </div>
+            
+            <div class="requirement">
+                <div class="requirement-circle"></div>
+                <span>1 number or special character (example: # ?! &)</span>
+            </div>
+            
+            <div class="requirement">
+                <div class="requirement-circle"></div>
+                <span>10 characters</span>
+            </div>
+        </div>
+        
+        <button type="submit" class="next-button">Next</button>
+    </form>
+</body>
+</html>
